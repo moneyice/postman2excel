@@ -1,0 +1,35 @@
+{
+	"id": "f681617b-014f-167c-d437-4f9b9386281b",
+	"name": "bbbbbbbbbbbbbbbb",
+	"description": "ccccccccccc",
+	"order": [
+		"e1ffc1d8-a741-bcd3-1827-562dac5d9299"
+	],
+	"folders": [],
+	"timestamp": 1484053097273,
+	"owner": "1427558",
+	"public": false,
+	"requests": [
+		{
+			"id": "e1ffc1d8-a741-bcd3-1827-562dac5d9299",
+			"headers": "Content-Type: text/plain\n",
+			"url": "https://echo.getpostman.com/post",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "f681617b-014f-167c-d437-4f9b9386281b",
+			"data": [],
+			"dataMode": "raw",
+			"name": "POST Request",
+			"description": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is returned depends on the implementation\nof the server.\n\nA `POST` request can pass parameters to the server using \"Query String \nParameters\", as well as the Request Body. For example, in the following request,\n\n> POST /hi/there?hand=wave\n>\n> <request-body>\n\nThe parameter \"hand\" has the value \"wave\". The request body can be in multiple\nformats. These formats are defined by the MIME type of the request. The MIME \nType can be set using the ``Content-Type`` HTTP header. The most commonly used \nMIME types are:\n\n* `multipart/form-data`\n* `application/x-www-form-urlencoded`\n* `application/json`\n\nThis endpoint echoes the HTTP headers, request parameters, the contents of\nthe request body and the complete URI requested.",
+			"descriptionFormat": "html",
+			"time": 1484053103418,
+			"version": 2,
+			"responses": [],
+			"tests": "var responseJSON;\n\ntry { responseJSON = JSON.parse(responseBody); }\ncatch (e) { }\n\n\ntests[\"response has data\"] = responseJSON && responseJSON.data && (responseJSON.data.length === 256);\ntests[\"content-type equals text/plain\"] = responseJSON && responseJSON.headers && (responseJSON.headers[\"content-type\"] === 'text/plain');",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium. Praesent neque quam, tincidunt nec leo eget, rutrum vehicula magna.\nMaecenas consequat elementum elit, id semper sem tristique et. Integer pulvinar enim quis consectetur interdum volutpat."
+		}
+	]
+}
