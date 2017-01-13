@@ -1,6 +1,3 @@
-/**
- * @author SargerasWang
- */
 package postman2excel.excelbean;
 
 
