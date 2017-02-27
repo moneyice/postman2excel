@@ -1,4 +1,4 @@
-package postma2excel.postmanbean;
+package postman2excel.postmanbean;
 import java.util.List;
 public class Request {
 private String id;

@@ -2,8 +2,8 @@ package postman2excel;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.io.Files;
-import postma2excel.postmanbean.Collection;
-import postma2excel.postmanbean.Request;
+import postman2excel.postmanbean.Collection;
+import postman2excel.postmanbean.Request;
 import postman2excel.excelbean.DataModel;
 import postman2excel.processor.ExcelSheet;
 import postman2excel.processor.ExcelUtil;
@@ -36,6 +36,9 @@ public class Postman2Excel {
         File[] files=rootFolderDirectory.listFiles();
         List<ExcelSheet<DataModel>> sheetList=new ArrayList<ExcelSheet<DataModel>>();
         for (File file: files) {
+            if(file.isDirectory()){
+                continue;
+            }
             ExcelSheet<DataModel> sheetModel=convertSheetModel(file);
             if(sheetModel!=null){
                 sheetList.add(sheetModel);
