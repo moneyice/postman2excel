@@ -100,14 +100,20 @@ public class Postman2Excel {
         });
 
         java.util.Collection<DataModel> dataset=new ArrayList<DataModel>();
+
         for (Request request: requestList) {
+            String description=request.getDescription();
+            String[] detailsArray=description.split("#");
+            description=detailsArray.length>0?detailsArray[0]:"description";
+            String domain=detailsArray.length>1?detailsArray[1]:"Domain";
+            String scenario=detailsArray.length>2?detailsArray[2]:"Scenario";
             DataModel model=new DataModel();
             model.setOwner(owner);
             model.setTestcase(request.getName());
-            model.setDomain("domain");
-            model.setApi("API");
-            model.setScenario("scenario");
-            model.setTestdata(request.getMethod()+" "+request.getUrl());
+            model.setDomain(domain);
+            model.setApi(mergeAPI(request.getMethod(),request.getUrl()));
+            model.setScenario(scenario);
+            model.setTestdata(description+"\n"+request.getUrl());
             model.setHeader(request.getHeaders());
             model.setInputPayload(request.getRawModeData());
             dataset.add(model);
@@ -115,5 +121,17 @@ public class Postman2Excel {
         return dataset;
     }
 
-
+    private String mergeAPI(String method, String url) {
+        //convert url to api definition
+        //{{serviceurl}}/itsm/assets/consumable?po_number=off_chr_10080
+        //to
+        ///itsm/assets/consumable
+            int parameterStartPosition=url.indexOf("?");
+            if(parameterStartPosition<0){
+                url=url.substring(url.indexOf("}}")+2);
+            }else{
+                url=url.substring(url.indexOf("}}")+2,parameterStartPosition);
+            }
+            return method+ " "+ url;
+    }
 }
